@@ -53,7 +53,7 @@ class Barometer {
         return self.pressureReadings.last?.1 ?? Date().timeIntervalSince1970
     }
     
-    func clearPressureReadings() {
+    func clearPressureReadings(){
         self.pressureReadings = [(Double, Double)]()
     }
     
@@ -73,6 +73,21 @@ class Barometer {
                 return kPa / 101.325
             default:
                 return kPa * 7.50061683
+        }
+    }
+    
+    func unit2kPa(pres:Double) -> Double {
+        switch settings.units {
+        case "mmHg":
+            return pres / 7.50061683
+        case "psi":
+            return pres * 6.89475729
+        case "kPa":
+            return pres
+        case "atm":
+            return pres * 101.325
+        default:
+            return pres
         }
     }
     

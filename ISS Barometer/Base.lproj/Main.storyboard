@@ -88,7 +88,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="H0n-q7-2e8" userLabel="Delta Stack">
-                                                <rect key="frame" x="256" y="75" width="236" height="182.5"/>
+                                                <rect key="frame" x="256" y="52.5" width="236" height="227.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8n-do-i69" userLabel="Delta/Reset View">
                                                         <rect key="frame" x="0.0" y="0.0" width="236" height="54"/>
@@ -149,6 +149,24 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ln0-pT-3Is" userLabel="TRes Stack">
+                                                        <rect key="frame" x="25" y="197.5" width="186.5" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opl-x4-JSn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="30"/>
+                                                                <state key="normal" title="T-Remaining:"/>
+                                                                <connections>
+                                                                    <action selector="tResButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VvJ-Zl-g5N"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-B5-H4e">
+                                                                <rect key="frame" x="91" y="0.0" width="95.5" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JTc-IJ-tLB" userLabel="dPdt/dtdP Stack">
@@ -384,6 +402,8 @@
                         <outlet property="pressureDisplay" destination="wfI-5A-aGZ" id="BS6-9y-V6o"/>
                         <outlet property="pressureDisplayUnit" destination="Nik-lW-xze" id="6Tt-0R-hSM"/>
                         <outlet property="settingsButton" destination="Bls-xd-9NA" id="cRI-BO-gVU"/>
+                        <outlet property="tResButton" destination="opl-x4-JSn" id="KQO-Dj-br1"/>
+                        <outlet property="tResDisplay" destination="oDg-B5-H4e" id="bke-yG-6CW"/>
                         <outlet property="yAxisLabel" destination="6Ws-NK-QZX" id="Zhu-Ix-f9a"/>
                     </connections>
                 </viewController>
@@ -521,8 +541,51 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="mT5-WW-FRT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Vfk-15-ATb">
                                         <rect key="frame" x="0.0" y="215" width="768" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vfk-15-ATb" id="jzY-q6-Dvx">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Pressure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq7-fu-jUy">
+                                                    <rect key="frame" x="20" y="20" width="142" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mmHg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97I-6G-fms">
+                                                    <rect key="frame" x="697" y="19" width="51" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sT2-k3-OsP">
+                                                    <rect key="frame" x="596" y="15" width="84" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="84" id="GfT-CX-U0W"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="minPressureChanged:" destination="Z9g-Lb-bfY" eventType="editingDidEnd" id="XvB-sK-H0U"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wq7-fu-jUy" secondAttribute="trailing" constant="20" symbolic="YES" id="CrA-5j-N2V"/>
+                                                <constraint firstItem="wq7-fu-jUy" firstAttribute="centerY" secondItem="jzY-q6-Dvx" secondAttribute="centerY" id="Gn4-8Q-cna"/>
+                                                <constraint firstItem="97I-6G-fms" firstAttribute="trailing" secondItem="jzY-q6-Dvx" secondAttribute="trailingMargin" id="Q6X-V3-p9k"/>
+                                                <constraint firstItem="wq7-fu-jUy" firstAttribute="leading" secondItem="jzY-q6-Dvx" secondAttribute="leading" constant="20" id="UOM-Av-rfG"/>
+                                                <constraint firstItem="sT2-k3-OsP" firstAttribute="centerY" secondItem="wq7-fu-jUy" secondAttribute="centerY" id="gRF-PH-aXG"/>
+                                                <constraint firstItem="sT2-k3-OsP" firstAttribute="centerY" secondItem="97I-6G-fms" secondAttribute="centerY" id="m1P-w0-b8P"/>
+                                                <constraint firstItem="97I-6G-fms" firstAttribute="leading" secondItem="sT2-k3-OsP" secondAttribute="trailing" constant="17" id="vF4-pC-VPj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="mT5-WW-FRT">
+                                        <rect key="frame" x="0.0" y="275" width="768" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mT5-WW-FRT" id="wGy-Q1-sZz">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="59.5"/>
@@ -551,7 +614,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="LNK-Ak-toq">
-                                        <rect key="frame" x="0.0" y="275" width="768" height="60"/>
+                                        <rect key="frame" x="0.0" y="335" width="768" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LNK-Ak-toq" id="egQ-m3-Nqv">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="59.5"/>
@@ -611,6 +674,8 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="minPressureField" destination="sT2-k3-OsP" id="DQa-cq-hCb"/>
+                        <outlet property="minPressureUnit" destination="97I-6G-fms" id="7Oo-Ph-BXO"/>
                         <outlet property="orientationPicker" destination="rqr-aY-t3V" id="fLP-GC-NfT"/>
                         <outlet property="runningWindowOptions" destination="egQ-m3-Nqv" id="JpF-7p-YBR"/>
                         <outlet property="runningWindowSlider" destination="0iU-HK-SCH" id="Lvu-A7-dkw"/>
@@ -625,7 +690,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zt-1e-3cC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="32"/>
+            <point key="canvasLocation" x="889.84375" y="31.640624999999996"/>
         </scene>
         <!--Chart View Controller-->
         <scene sceneID="2jW-JN-V5k">

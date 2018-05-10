@@ -36,6 +36,9 @@ class SettingsViewController: UITableViewController {
         popOver.barButtonItem = self.shareSheet
     }
     
+    @IBOutlet weak var minPressureField: UITextField!
+    @IBOutlet weak var minPressureUnit: UILabel!
+    
     @IBAction func sliderMoved(_ sender: Any) {
         let roundedValue = lroundf(sigFigSlider.value)
         (sender as AnyObject).setValue(Float(roundedValue), animated: true)
@@ -46,8 +49,11 @@ class SettingsViewController: UITableViewController {
     @IBAction func unitPicked(_ sender: Any) {
         let selectedIdx = unitPicker.selectedSegmentIndex
         let selectedUnit = unitPicker.titleForSegment(at: selectedIdx)
+        let kpaOfField = Barometer().unit2kPa(pres: Double(minPressureField.text!)!)
         chartVC.convertDataPoints(unit: selectedUnit!)
         settings.units = selectedUnit!
+        minPressureUnit.text = selectedUnit!
+        minPressureField.text = String(format:"%.3f", Barometer().kPa2units(kPa: kpaOfField))
     }
     
     @IBAction func orientationPicked(_ sender: Any) {
@@ -67,6 +73,12 @@ class SettingsViewController: UITableViewController {
         (sender as AnyObject).setValue(Float(roundedValue), animated: true)
         runningWindowValue.text = String(roundedValue*25)
         settings.windowSize = roundedValue*25
+    }
+    
+    @IBAction func minPressureChanged(_ sender: Any) {
+        if let pres = Double(minPressureField.text!) {
+            settings.pressureBuffer = Barometer().unit2kPa(pres: pres)
+        }
     }
     
     func initSlider() {
@@ -102,6 +114,12 @@ class SettingsViewController: UITableViewController {
         runningWindowSlider.setValue(Float(round(Double(settings.windowSize)/25.0)), animated: true)
     }
     
+    func initMinPressure() {
+        minPressureUnit.text = settings.units
+        minPressureField.keyboardType = .numbersAndPunctuation
+        minPressureField.text = String(format:"%.3f", Barometer().kPa2units(kPa: settings.pressureBuffer))
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initSlider()
@@ -109,6 +127,7 @@ class SettingsViewController: UITableViewController {
         initOrientationPicker()
         initSlidingScalePicker()
         initWindowSlider()
+        initMinPressure()
     }
     
     override func viewDidLoad() {

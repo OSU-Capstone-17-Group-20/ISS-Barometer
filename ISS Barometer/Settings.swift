@@ -16,4 +16,5 @@ class Settings: Codable {
     var slidingScale = false
     var slidingScaleThreshold = 20
     var windowSize = 50
+    var pressureBuffer = 58.66
 }
